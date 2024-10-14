@@ -64,31 +64,31 @@ public class Priority {
      * @deprecated Use {@link Level#FATAL} instead.
      */
     @Deprecated
-    public static final Priority FATAL = new Level(FATAL_INT, "FATAL", 0);
+    public static final Priority FATAL = new Level(FATAL_INT, "FATAL", 0, org.apache.logging.log4j.Level.FATAL);
 
     /**
      * @deprecated Use {@link Level#ERROR} instead.
      */
     @Deprecated
-    public static final Priority ERROR = new Level(ERROR_INT, "ERROR", 3);
+    public static final Priority ERROR = new Level(ERROR_INT, "ERROR", 3, org.apache.logging.log4j.Level.ERROR);
 
     /**
      * @deprecated Use {@link Level#WARN} instead.
      */
     @Deprecated
-    public static final Priority WARN = new Level(WARN_INT, "WARN", 4);
+    public static final Priority WARN = new Level(WARN_INT, "WARN", 4, org.apache.logging.log4j.Level.WARN);
 
     /**
      * @deprecated Use {@link Level#INFO} instead.
      */
     @Deprecated
-    public static final Priority INFO = new Level(INFO_INT, "INFO", 6);
+    public static final Priority INFO = new Level(INFO_INT, "INFO", 6, org.apache.logging.log4j.Level.INFO);
 
     /**
      * @deprecated Use {@link Level#DEBUG} instead.
      */
     @Deprecated
-    public static final Priority DEBUG = new Level(DEBUG_INT, "DEBUG", 7);
+    public static final Priority DEBUG = new Level(DEBUG_INT, "DEBUG", 7, org.apache.logging.log4j.Level.DEBUG);
 
     /*
      * These variables should be private but were not in Log4j 1.2 so are left the same way here.
