@@ -16,12 +16,16 @@
  */
 package org.apache.log4j;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Locale;
-import org.junit.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests of Priority.
@@ -85,49 +89,23 @@ public class PriorityTest {
         assertEquals(Integer.MIN_VALUE, Priority.ALL_INT);
     }
 
-    /**
-     * Tests Priority.FATAL version2Level.
-     */
-    @Test
     @SuppressWarnings("deprecation")
-    public void testFatalVersion2Level() {
-        assertEquals(org.apache.logging.log4j.Level.FATAL, Priority.FATAL.getVersion2Level());
+    static Stream<Arguments> testVersion2Level() {
+        return Stream.of(
+                Arguments.of(Priority.FATAL, org.apache.logging.log4j.Level.FATAL),
+                Arguments.of(Priority.ERROR, org.apache.logging.log4j.Level.ERROR),
+                Arguments.of(Priority.WARN, org.apache.logging.log4j.Level.WARN),
+                Arguments.of(Priority.INFO, org.apache.logging.log4j.Level.INFO),
+                Arguments.of(Priority.DEBUG, org.apache.logging.log4j.Level.DEBUG));
     }
 
     /**
-     * Tests Priority.ERROR version2Level.
+     * Tests version2Level.
      */
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testErrorVersion2Level() {
-        assertEquals(org.apache.logging.log4j.Level.ERROR, Priority.ERROR.getVersion2Level());
-    }
-
-    /**
-     * Tests Priority.WARN version2Level.
-     */
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testWarnVersion2Level() {
-        assertEquals(org.apache.logging.log4j.Level.WARN, Priority.WARN.getVersion2Level());
-    }
-
-    /**
-     * Tests Priority.INFO version2Level.
-     */
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testInfoVersion2Level() {
-        assertEquals(org.apache.logging.log4j.Level.INFO, Priority.INFO.getVersion2Level());
-    }
-
-    /**
-     * Tests Priority.DEBUG version2Level.
-     */
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testDebugVersion2Level() {
-        assertEquals(org.apache.logging.log4j.Level.DEBUG, Priority.DEBUG.getVersion2Level());
+    @ParameterizedTest
+    @MethodSource()
+    public void testVersion2Level(final Priority log4j1Priority, final org.apache.logging.log4j.Level log4j2Level) {
+        assertEquals(log4j2Level, log4j1Priority.getVersion2Level());
     }
 
     /**
